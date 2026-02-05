@@ -121,6 +121,28 @@ public class SubCategoryController {
         );
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse<SubCategory>> update(@PathVariable int id , @RequestBody SubCategory subCategory) {
+        Optional<SubCategory> subCategory1 = subCategoryService.findById(id);
+        if (subCategory1.isEmpty()) {
+            return ResponseEntity.ok(
+                    new ApiResponse<>(
+                            HttpStatus.NOT_FOUND.value(),
+                            "SubCategory not found",
+                            null
+                    )
+            );
+        }
+        Optional<SubCategory> subCategoryOptional = subCategoryService.updateSubCategory(id, subCategory);
+        return ResponseEntity.ok(
+                new ApiResponse<>(
+                        HttpStatus.OK.value(),
+                        "Success",
+                        subCategoryOptional.get()
+                )
+        );
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<SubCategory>> deleteById(
             @PathVariable int id) {
