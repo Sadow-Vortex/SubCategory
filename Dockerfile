@@ -10,4 +10,4 @@ RUN ./mvnw clean install -DskipTests
 
 EXPOSE 10000
 
-CMD java -jar target\SubCategory-0.0.1-SNAPSHOT.jar
+CMD java -jar target/SubCategory-0.0.1-SNAPSHOT.jar
