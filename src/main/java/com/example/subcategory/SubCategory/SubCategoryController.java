@@ -74,27 +74,16 @@ public class SubCategoryController {
     }
 
     @GetMapping("/by-name/{name}")
-    public ResponseEntity<ApiResponse<SubCategory>> findByName(
-            @PathVariable String name) {
+    public ResponseEntity<ApiResponse<List<SubCategory>>> findByName(@PathVariable String name) {
 
-        Optional<SubCategory> subCategory =
+        List<SubCategory> subCategory =
                 subCategoryService.findByName(name);
-
-        if (subCategory.isEmpty()) {
-            return ResponseEntity.ok(
-                    new ApiResponse<>(
-                            HttpStatus.NOT_FOUND.value(),
-                            "SubCategory not found",
-                            null
-                    )
-            );
-        }
 
         return ResponseEntity.ok(
                 new ApiResponse<>(
                         HttpStatus.OK.value(),
                         "Success",
-                        subCategory.get()
+                        subCategory
                 )
         );
     }

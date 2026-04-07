@@ -33,6 +33,7 @@ public class CategoryController {
         return ResponseEntity.ok(response);
     }
 
+
     @PostMapping
     public ResponseEntity<ApiResponse<Category>> create(@RequestBody Category category) {
 
@@ -48,25 +49,15 @@ public class CategoryController {
     }
 
     @GetMapping("/by-name/{name}")
-    public ResponseEntity<ApiResponse<Category>> findByName(@PathVariable String name) {
+    public ResponseEntity<ApiResponse<List<Category>>> findByName(@PathVariable String name) {
 
-        Optional<Category> category = categoryService.findByName(name);
-
-        if (category.isEmpty()) {
-            return ResponseEntity.ok(
-                    new ApiResponse<>(
-                            HttpStatus.NOT_FOUND.value(),
-                            "Category not found",
-                            null
-                    )
-            );
-        }
+        List<Category> category = categoryService.findByName(name);
 
         return ResponseEntity.ok(
                 new ApiResponse<>(
                         HttpStatus.OK.value(),
                         "Success",
-                        category.get()
+                        category
                 )
         );
     }

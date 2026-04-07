@@ -20,8 +20,8 @@ public class SubCategoryService {
         return subCategoryRepository.save(subCategory);
     }
 
-    public Optional<SubCategory> findByName(String name) {
-        return subCategoryRepository.findBySubCategoryName(name);
+    public List<SubCategory> findByName(String name) {
+        return subCategoryRepository.findBySubCategoryNameStartingWithIgnoreCase(name);
     }
 
     public Optional<SubCategory> findById(int id) {

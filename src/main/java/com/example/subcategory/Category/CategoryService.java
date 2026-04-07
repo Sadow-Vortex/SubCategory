@@ -20,9 +20,10 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Optional<Category> findByName(String name) {
-        return categoryRepository.findByCategoryName(name);
+    public List<Category> findByName(String name) {
+        return categoryRepository.findByCategoryNameStartingWithIgnoreCase(name);
     }
+
 
     public Optional<Category> deleteById(int id) {
         Optional<Category> category = categoryRepository.findById(id);

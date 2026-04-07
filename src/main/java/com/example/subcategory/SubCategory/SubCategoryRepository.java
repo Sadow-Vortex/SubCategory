@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface SubCategoryRepository extends JpaRepository<SubCategory, Integer> {
 
-    Optional<SubCategory> findBySubCategoryName(String subCategoryName);
+    List<SubCategory> findBySubCategoryNameStartingWithIgnoreCase(String name);
 
     List<SubCategory> findByCategoryId(Integer categoryId);
 
